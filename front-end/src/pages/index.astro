@@ -1,0 +1,106 @@
+---
+import { Button } from "../components/button";
+import { Icons } from "../components/icons";
+
+const { PlayIcon, InfoIcon, BellIcon, SearchIcon, ChevronDownIcon } = Icons;
+
+const movieData = {
+  featured: {
+    title: "Stranger Things",
+    description:
+      "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
+    image: "/placeholder.svg?height=600&width=1200",
+  },
+  categories: [
+    {
+      name: "Tendencias",
+      movies: [
+        {
+          title: "The Witcher",
+          image: "/placeholder.svg?height=200&width=134",
+        },
+        { title: "Bridgerton", image: "/placeholder.svg?height=200&width=134" },
+        {
+          title: "Money Heist",
+          image: "/placeholder.svg?height=200&width=134",
+        },
+        { title: "The Crown", image: "/placeholder.svg?height=200&width=134" },
+        { title: "Ozark", image: "/placeholder.svg?height=200&width=134" },
+      ],
+    },
+    {
+      name: "Originales de Netflix",
+      movies: [
+        { title: "Narcos", image: "/placeholder.svg?height=200&width=134" },
+        {
+          title: "The Queen's Gambit",
+          image: "/placeholder.svg?height=200&width=134",
+        },
+        { title: "Dark", image: "/placeholder.svg?height=200&width=134" },
+        {
+          title: "Black Mirror",
+          image: "/placeholder.svg?height=200&width=134",
+        },
+        { title: "Mindhunter", image: "/placeholder.svg?height=200&width=134" },
+      ],
+    },
+  ],
+};
+---
+
+<div>
+  <!-- Barra de navegación -->
+  <nav>
+    <div>
+      <img src="/placeholder.svg?height=32&width=108" alt="Netflix" />
+      <ul>
+        <li>Inicio</li>
+        <li>Series TV</li>
+        <li>Películas</li>
+        <li>Novedades populares</li>
+        <li>Mi lista</li>
+      </ul>
+    </div>
+    <div>
+      <SearchIcon />
+      <BellIcon />
+      <img src="/placeholder.svg?height=32&width=32" alt="User" />
+      <ChevronDownIcon />
+    </div>
+  </nav>
+
+  <!-- Banner principal -->
+  <div>
+    <div style={`background-image: url(${movieData.featured.image});`}>
+      <div></div>
+    </div>
+    <div>
+      <h1>{movieData.featured.title}</h1>
+      <p>{movieData.featured.description}</p>
+      <div>
+        <Button>
+          <PlayIcon /> Reproducir
+        </Button>
+        <Button variant="secondary">
+          <InfoIcon /> Más información
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filas de películas -->
+  {
+    movieData.categories.map((category) => (
+      <div>
+        <h2>{category.name}</h2>
+        <div>
+          {category.movies.map((movie) => (
+            <div>
+              <img src={movie.image} alt={movie.title} />
+            </div>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+</div>
