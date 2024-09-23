@@ -48,12 +48,18 @@ const movieData = {
 };
 ---
 
-<div>
+<div class="min-h-screen bg-black text-white">
   <!-- Barra de navegación -->
-  <nav>
-    <div>
-      <img src="/placeholder.svg?height=32&width=108" alt="Netflix" />
-      <ul>
+  <nav
+    class="flex items-center justify-between px-12 py-4 bg-black bg-opacity-90 fixed w-full z-50"
+  >
+    <div class="flex items-center">
+      <img
+        src="/placeholder.svg?height=32&width=108"
+        alt="Netflix"
+        class="h-8"
+      />
+      <ul class="flex ml-8 space-x-4">
         <li>Inicio</li>
         <li>Series TV</li>
         <li>Películas</li>
@@ -61,28 +67,36 @@ const movieData = {
         <li>Mi lista</li>
       </ul>
     </div>
-    <div>
-      <SearchIcon />
-      <BellIcon />
-      <img src="/placeholder.svg?height=32&width=32" alt="User" />
-      <ChevronDownIcon />
+    <div class="flex items-center space-x-4">
+      <SearchIcon className="h-5 w-5" />
+      <BellIcon className="h-5 w-5" />
+      <img
+        src="/placeholder.svg?height=32&width=32"
+        alt="User"
+        class="h-8 w-8 rounded"
+      />
+      <ChevronDownIcon className="h-4 w-4" />
     </div>
   </nav>
 
   <!-- Banner principal -->
-  <div>
-    <div style={`background-image: url(${movieData.featured.image});`}>
-      <div></div>
+  <div class="relative pt-20 pb-40 mb-8">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style={`background-image: url(${movieData.featured.image});`}
+    >
+      <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent">
+      </div>
     </div>
-    <div>
-      <h1>{movieData.featured.title}</h1>
-      <p>{movieData.featured.description}</p>
-      <div>
-        <Button>
-          <PlayIcon /> Reproducir
+    <div class="relative z-10 px-12 pt-32">
+      <h1 class="text-5xl font-bold mb-4">{movieData.featured.title}</h1>
+      <p class="text-lg max-w-xl mb-6">{movieData.featured.description}</p>
+      <div class="flex space-x-4">
+        <Button className="flex items-center">
+          <PlayIcon className="mr-2" /> Reproducir
         </Button>
-        <Button variant="secondary">
-          <InfoIcon /> Más información
+        <Button variant="secondary" className="flex items-center">
+          <InfoIcon className="mr-2" /> Más información
         </Button>
       </div>
     </div>
@@ -91,12 +105,16 @@ const movieData = {
   <!-- Filas de películas -->
   {
     movieData.categories.map((category) => (
-      <div>
-        <h2>{category.name}</h2>
-        <div>
+      <div class="px-12 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">{category.name}</h2>
+        <div class="flex space-x-4 overflow-x-auto pb-4">
           {category.movies.map((movie) => (
-            <div>
-              <img src={movie.image} alt={movie.title} />
+            <div class="flex-shrink-0">
+              <img
+                src={movie.image}
+                alt={movie.title}
+                class="w-32 h-48 object-cover rounded transition-transform duration-300 hover:scale-110"
+              />
             </div>
           ))}
         </div>
